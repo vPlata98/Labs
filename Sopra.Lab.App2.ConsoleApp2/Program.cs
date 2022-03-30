@@ -45,12 +45,12 @@ namespace Demo.Sopra.ConsoleApp1
             // productos con un precio inferior a la media
 
             var consulta1 = from c in DataLists.ListaClientes
-                             where c.FechaNac.Year < 1990 && c.FechaNac.Year > 1980
+                             where c.FechaNac.Year < 1990 && c.FechaNac.Year >= 1980
                              select c;
             consulta1.ToList().ForEach(c => Console.WriteLine($"nacidos entre 1980 y 1990 {c.FechaNac}"));
 
             var consulta2 = from c in DataLists.ListaClientes
-                             where  DateTime.Now.Year - c.FechaNac.Year  > 25
+                             where  c.FechaNac.AddYears(25)  <= DateTime.Now
                              select c;
             consulta2.ToList().ForEach(c => Console.WriteLine($"mayores de 25 {c.FechaNac}"));
 

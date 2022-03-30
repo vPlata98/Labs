@@ -17,9 +17,14 @@ namespace Sopra.Lab.App1.ConsoleApp1
         /// </summary>
         static void MostrarTablaMultiplicarFor()
         {
-            Console.WriteLine("Introduce un numero para saber su tabla de multiplicar");
-            string numS = Console.ReadLine();
-            int num = int.Parse(numS);
+            string numS = null;
+            int num;
+            while (!int.TryParse(numS, out num))
+            {
+                Console.WriteLine("Introduce un numero para saber su tabla de multiplicar");
+                numS = Console.ReadLine();
+            }
+            
             Console.WriteLine($"Tabla del {num}");
             for (int i = 0; i <= 10; i++)
             {
@@ -32,12 +37,16 @@ namespace Sopra.Lab.App1.ConsoleApp1
         /// </summary>
         static void MostrarTablaMultiplicarWhile()
         {
-            Console.WriteLine("Introduce un numero para saber su tabla de multiplicar");
-            string numS = Console.ReadLine();
-            int num = int.Parse(numS);
+            string numS = null;
+            int num;
+            while (!int.TryParse(numS, out num))
+            {
+                Console.WriteLine("Introduce un numero para saber su tabla de multiplicar");
+                numS = Console.ReadLine();
+            }
             Console.WriteLine($"Tabla del {num}");
             int i = 0;
-            while ( i <= 10)
+            while (i <= 10)
             {
                 Console.WriteLine(num * i);
                 i++;
@@ -50,18 +59,25 @@ namespace Sopra.Lab.App1.ConsoleApp1
         {
             // Desde valor de inicio hasta valor final
             // con diferentes saltos
-            Console.WriteLine("Introduce un valor minimo");
-            string minS = Console.ReadLine();
-            int min = int.Parse(minS);
+            string minS = null;
+            string maxS = null;
+            string saltoS = null;
+            int min;
+            int max = 0;
+            int salto = 0;
+            while (!int.TryParse(minS, out min) || !int.TryParse(maxS, out max) || !int.TryParse(saltoS, out salto))
+            {
+                Console.WriteLine("Introduce un valor minimo");
+                minS = Console.ReadLine();
 
-            Console.WriteLine("Introduce un valor maximo");
-            string maxS = Console.ReadLine();
-            int max = int.Parse(maxS);
+                Console.WriteLine("Introduce un valor maximo");
+                maxS = Console.ReadLine();
 
-            Console.WriteLine("Introduce un intervalo");
-            string saltoS = Console.ReadLine();
-            int salto = int.Parse(saltoS);
+                Console.WriteLine("Introduce un intervalo");
+                saltoS = Console.ReadLine();
 
+            }
+            
             for (int i = min; i <= max; i+=salto)
             {
                 Console.WriteLine(i);
@@ -75,22 +91,30 @@ namespace Sopra.Lab.App1.ConsoleApp1
         {
             // numero de valores, almacenamos en un array
             // queremos maximo, minimo, media, suma, num
-            Console.WriteLine("Introduce el numero de valores que quieres guardar");
-            string lenS = Console.ReadLine();
-            int len = int.Parse(lenS);
-            int maxValue = -1;
-            int minValue = 500;
+            String lenS = null;
+            int len;
+            while (!int.TryParse(lenS, out len))
+            {
+                Console.WriteLine("Introduce el numero de valores que quieres guardar");
+                lenS = Console.ReadLine();
+            }
+            int maxValue = int.MinValue;
+            int minValue = int.MaxValue;
             int acum = 0;
 
             int [] numeros = new int[len];
+            string numS = null;
             for (int i = 0; i < len; i++)
             {   
-                
-                Console.WriteLine("Introduce el numero que quieres guardar");
-                numeros[i] = int.Parse(Console.ReadLine());
+                while (!int.TryParse(numS, out numeros[i]))
+                {
+                    Console.WriteLine("Introduce el numero que quieres guardar");
+                    numS = Console.ReadLine();
+                }
                 acum += numeros[i];
                 if (numeros[i] >= maxValue) { maxValue = numeros[i]; }
-                else if (numeros[i] < minValue) { minValue = numeros[i]; }
+                if (numeros[i] < minValue) { minValue = numeros[i]; }
+                numS = null;
             }
             Console.WriteLine($"El maximo es {maxValue}");
             Console.WriteLine($"El minimo es {minValue}");
@@ -106,9 +130,13 @@ namespace Sopra.Lab.App1.ConsoleApp1
             // posicion en el array de la letra
             // Array:
             // array = [T,R,W,A,G,M,Y,F,P,D,X,B,N,J,Z,S,Q,V,H,L,C,K,E]
-            Console.WriteLine("Introduce tu numero del DNI");
-            string dniS = Console.ReadLine();
-            int dni = int.Parse(dniS);
+            int dni;
+            string dniS = null;
+            while (!int.TryParse(dniS, out dni) || dniS.Length != 8)
+            {
+                Console.WriteLine("Introduce tu numero del DNI");
+                dniS = Console.ReadLine();
+            }
             char[] letras = { 'T', 'R', 'W', 'A', 'G', 'M', 'Y', 'F', 'P', 'D', 'X', 'B', 'N', 'J', 'Z', 'S', 'Q', 'V', 'H', 'L', 'C', 'K', 'E' };
             Console.WriteLine($"Tu letra del DNI es {letras[dni%23]}");
         }

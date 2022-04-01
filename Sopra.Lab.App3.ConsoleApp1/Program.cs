@@ -3,14 +3,96 @@ using System.Data;
 using System.Linq;
 using System.Data.SqlClient;
 using Sopra.Lab.App3.ConsoleApp3.Models;
-
+using Microsoft.EntityFrameworkCore;
 namespace Sopra.Lab.App3.ConsoleApp1
 {
     internal class Program
     {
         static void Main(string[] args)
         {
-            EjerciciosEF();
+            BusquedasComplejas();
+        }
+        static void BusquedasComplejas()
+        {
+            var con = new ModelNorthwind();
+            // Group by
+
+            // Lineas de pedido agrupadas por pedidos
+
+            var c7 = con.Order_Details.AsEnumerable()
+                .GroupBy(c => c.OrderID);
+            
+            foreach( var order in c7){
+                Console.WriteLine($"{order.Key} ");
+                foreach (var o in order)
+                {
+                    Console.WriteLine($"{o.ProductID} {o.UnitPrice}");
+                }
+            }
+
+
+            Console.ReadLine();
+
+
+
+            // Categoria condiments y seafood
+            var c1 = con.Categories.Where(c => c.CategoryName == "condiments" || c.CategoryName == "seafood").Include(c => c.Products);
+            foreach(var category in c1)
+            {
+                Console.WriteLine($"Categoria {category.CategoryName}");
+                foreach(var product in category.Products)
+                {
+                    Console.WriteLine($"Productos: {product.ProductName}");
+                }
+            }
+            Console.ReadLine();
+
+            // Listado de empleados nombre apellidos y listado de pedidos del 97
+            var c2 = con.Employees.Include(c => c.Orders.Where(p => p.OrderDate.Value.Year == 1997)).Select(c => new { c.FirstName, c.LastName, c.Orders.Count });
+            foreach (var employee in c2)
+            {
+                Console.WriteLine($"Empleado {employee.FirstName} {employee.LastName} Pedidos {employee.Count}");
+                
+            }
+            Console.ReadLine();
+            // Listado de pedidos de los clientes de USA
+            var c3 = con.Customers.Where(c => c.Country == "USA").Include(c => c.Orders);
+            foreach (var customer in c3)
+            {
+                Console.WriteLine($"Cliente {customer.CompanyName} {customer.Country}");
+                foreach (var order in customer.Orders)
+                {
+                    Console.WriteLine($"Pedido: {order.OrderID}");
+                }
+            }
+            Console.ReadLine();
+
+            // Clientes que han pedido el producto 57 
+            var c4 = con.Order_Details.Include(c => c.Order).Where(c => c.ProductID == 57).Select(c => c.Order.CustomerID);
+            foreach (var orderDetail in c4)
+            {
+
+                Console.WriteLine($"Cliente {orderDetail} ");
+
+            }
+            Console.ReadLine();
+            // Clientes que han pedido el producto 72 en 1997 
+            var c5 = con.Order_Details.Include(c => c.Order).Where(c => c.ProductID == 72 && c.Order.OrderDate.Value.Year == 1997).Select(c => c.Order.CustomerID);
+            foreach (var orderDetail in c5)
+            {
+                Console.WriteLine($"Cliente {orderDetail} ");
+
+            }
+            Console.ReadLine();
+            // Coincidentes de las consultas anteriores 
+            var c6 = c4.Intersect(c5);
+            foreach (var orderDetail in c6)
+            {
+                Console.WriteLine($"Cliente {orderDetail} ");
+                
+
+            }
+            Console.ReadLine();
         }
         static void TrabajandoConADONET()
         {
@@ -65,15 +147,45 @@ namespace Sopra.Lab.App3.ConsoleApp1
         {
             var con = new ModelNorthwind();
 
-            // clientes de usa
+            // Listado de empleados que son mayores que sus jefes 
+            var c20 = con.Employees.Where(p => p.ReportsTo != null && con.Employees
+                .Where(c => p.BirthDate < c.BirthDate)
+                .Select(c => (int?)c.EmployeeID)
+                .Contains(p.ReportsTo));
+            c20.ToList().ForEach(p => Console.WriteLine($"Informacion del empleado: { p.FirstName } { p.EmployeeID } Superior: {p.ReportsTo}"));
+            Console.ReadLine();
 
+            // Listado de productos Nombre stock y valor del stock
+            var c21 = con.Products.Select(p => new { p.ProductName, p.UnitsInStock, TotalValue = p.UnitsInStock * p.UnitPrice });
+            c21.ToList().ForEach(p => Console.WriteLine($"Nombre: {p.ProductName} Stock: {p.UnitsInStock} Valor del stock: {p.TotalValue}"));
+            Console.ReadLine();
+
+            // Listado de empleados nombre apellidos y listado de pedidos del 97
+            var c22 = con.Employees.Select(p => new
+            {
+                p.FirstName,
+                p.LastName,
+                Orders = con.Orders
+                    .Count(c => (c.OrderDate.HasValue ? c.OrderDate.Value.Year : 0) == 1997 && c.EmployeeID == p.EmployeeID)
+            });
+            c22.ToList().ForEach(p => Console.WriteLine($"Empleado {p.FirstName} {p.LastName} {p.Orders} "));
+            Console.ReadLine();
+
+            // Tiempo medio de preparacion de pedidos
+            //var c23 = con.Orders.Average(p => (p.ShippedDate.HasValue && p.OrderDate.HasValue ? p.ShippedDate.Value.Subtract(p.OrderDate.Value).TotalDays  : 0));
+            var c24 = con.Orders.Where(p=> p.ShippedDate.HasValue && p.OrderDate.HasValue).ToList().Average(p => p.ShippedDate.Value.Subtract(p.OrderDate.Value).TotalDays );
+            Console.WriteLine($"Tiempo medio de preparacion de pedidos: {c24}");
+
+            // clientes de usa
             var c1 = con.Customers.Where(c => c.Country == "USA");
             c1.ToList().ForEach(c => Console.WriteLine($"Clientes de usa {c.CompanyName} {c.Country}"));
+            
             // proveedores de berlin
             Console.ReadLine();
             var c2 = con.Suppliers.Where(c => c.City == "Berlin");
             c2.ToList().ForEach(c => Console.WriteLine($"proveedores de berlin {c.CompanyName} {c.City}"));
             Console.ReadLine();
+            
             // trabajadores con id 1 3 5
             var c3 = con.Employees.Where(c => c.EmployeeID == 1 || c.EmployeeID == 3 || c.EmployeeID == 5);
             c3.ToList().ForEach(c => Console.WriteLine($"trabajadores con id 1 3 5 {c.FirstName} {c.EmployeeID}"));
@@ -153,6 +265,10 @@ namespace Sopra.Lab.App3.ConsoleApp1
 
             var c19 = con.Orders.Where(p => con.Customers.Where(c => c.Country == "Argentina").Select(r => r.CustomerID).Contains(p.CustomerID));
             c18.ToList().ForEach(p => Console.WriteLine($"Todos los pedidos de clientes de argentina  {p.CustomerID} {p.OrderID}"));
+            Console.ReadLine();
+            
+
+            
 
         }
 

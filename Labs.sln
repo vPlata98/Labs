@@ -5,7 +5,9 @@ VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sopra.Lab.App1.ConsoleApp1", "Sopra.Lab.App1.ConsoleApp1\Sopra.Lab.App1.ConsoleApp1.csproj", "{E843DADD-8736-48F7-96D5-8BE5397AD860}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sopra.Lab.App2.ConsoleApp2", "Sopra.Lab.App2.ConsoleApp2\Sopra.Lab.App2.ConsoleApp2.csproj", "{2C595838-600E-454B-9F9D-F3E12270BB18}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sopra.Lab.App2.ConsoleApp2", "Sopra.Lab.App2.ConsoleApp2\Sopra.Lab.App2.ConsoleApp2.csproj", "{2C595838-600E-454B-9F9D-F3E12270BB18}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sopra.Lab.App3.ConsoleApp3", "Sopra.Lab.App3.ConsoleApp1\Sopra.Lab.App3.ConsoleApp3.csproj", "{1BA01BC3-63A3-4156-8768-6EDB53EAC341}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2C595838-600E-454B-9F9D-F3E12270BB18}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C595838-600E-454B-9F9D-F3E12270BB18}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C595838-600E-454B-9F9D-F3E12270BB18}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1BA01BC3-63A3-4156-8768-6EDB53EAC341}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BA01BC3-63A3-4156-8768-6EDB53EAC341}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BA01BC3-63A3-4156-8768-6EDB53EAC341}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BA01BC3-63A3-4156-8768-6EDB53EAC341}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

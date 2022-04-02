@@ -39,10 +39,10 @@ namespace Sopra.Lab.App3.ConsoleApp1
             var c1 = con.Categories.Where(c => c.CategoryName == "condiments" || c.CategoryName == "seafood").Include(c => c.Products);
             foreach(var category in c1)
             {
-                Console.WriteLine($"Categoria {category.CategoryName}");
+                Console.WriteLine($"Categoria {category.CategoryID} {category.CategoryName}");
                 foreach(var product in category.Products)
                 {
-                    Console.WriteLine($"Productos: {product.ProductName}");
+                    Console.WriteLine($"Productos: {product.ProductName} {product.CategoryID}");
                 }
             }
             Console.ReadLine();

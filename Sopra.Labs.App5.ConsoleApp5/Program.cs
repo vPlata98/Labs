@@ -7,6 +7,7 @@ namespace Sopra.Labs.App5.ConsoleApp5
 {
     internal class Program
     {
+        static HttpClient http = new HttpClient();
         static void Main(string[] args)
         {
             ZipCodeInfo();
@@ -16,7 +17,7 @@ namespace Sopra.Labs.App5.ConsoleApp5
             //www.ip-api.com/json/193.146.141.207
 
             // Instanciar el cliente http
-            var http = new HttpClient();
+            
 
             // Definir direccion base ( parte de url que se repite en todas las llamadas)
             http.BaseAddress = new Uri("http://ip-api.com/json/");
@@ -55,7 +56,7 @@ namespace Sopra.Labs.App5.ConsoleApp5
             //www.ip-api.com/json/193.146.141.207
 
             // Instanciar el cliente http
-            var http = new HttpClient();
+            
 
             // Definir direccion base ( parte de url que se repite en todas las llamadas)
             http.BaseAddress = new Uri("http://api.zippopotam.us/");

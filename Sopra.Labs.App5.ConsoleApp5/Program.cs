@@ -2,6 +2,7 @@
 using System.Net;
 using System.Net.Http;
 using Newtonsoft.Json;
+using System.Net.Http.Json;
 
 namespace Sopra.Labs.App5.ConsoleApp5
 {
@@ -10,7 +11,7 @@ namespace Sopra.Labs.App5.ConsoleApp5
         static HttpClient http = new HttpClient();
         static void Main(string[] args)
         {
-            ZipCodeInfo();
+            StudentsInfo();
         }
         static void GeoLocationIP()
         {
@@ -49,6 +50,60 @@ namespace Sopra.Labs.App5.ConsoleApp5
 
 
 
+        }
+
+        static void StudentsInfo1()
+        {
+            //www.ip-api.com/json/193.146.141.207
+
+            // Instanciar el cliente http
+
+
+            // Definir direccion base ( parte de url que se repite en todas las llamadas)
+            http.BaseAddress = new Uri("http://school.labs.com.es/api/students/");
+
+            // Definir cabeceras
+
+            // Definir el cuerpo del mensaje
+
+            // Llamada al microservicio (API Rest o HTTP based)
+            // Metodo o verbo a utilizar: GET
+            HttpResponseMessage response = http.GetAsync(Console.ReadLine()).Result;
+
+            if (response.StatusCode == HttpStatusCode.OK)
+            {
+                // Leer el contenido del body
+
+                string content = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine($"Contenido en JSON: {content}");
+
+                // Deserializar el objeto
+                var info = JsonConvert.DeserializeObject<dynamic>(content);
+                Console.WriteLine($"Info: {info.firstName}");
+
+            }
+            else { Console.WriteLine($"Error: {response.StatusCode}"); }
+
+        }
+        static void StudentsInfo()
+        {
+            Console.WriteLine($"Escribe el id del alumno");
+            http.BaseAddress = new Uri("http://school.labs.com.es/api/students/");
+            try
+            {
+                var infoStudent = http.GetFromJsonAsync<Student>(Console.ReadLine()).Result;
+                if (infoStudent != null)
+                {
+                    Console.WriteLine($"Estudiante: {infoStudent.Firstname} {infoStudent.Lastname}");
+
+                }
+                else { Console.WriteLine(infoStudent); }
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
         }
 
         static void ZipCodeInfo()
@@ -95,6 +150,15 @@ namespace Sopra.Labs.App5.ConsoleApp5
             else { Console.WriteLine($"Error: {response.StatusCode}"); }
         }
     }
+    public class Student
+    {
+        public int Id { get; set; }
+        public string Firstname { get; set; }
+        public string Lastname { get; set; }
+        public DateTime DateOfBirth { get; set; }
+        public int ClassId { get; set; }
+    }
+
     //public class InfoIP2
     //{
     //    public string country { get; set; }

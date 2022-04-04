@@ -82,9 +82,9 @@ namespace Sopra.Labs.App5.ConsoleApp5
 
                 // Deserializar el objeto
                 var info = JsonConvert.DeserializeObject<dynamic>(content);
-                Console.WriteLine($"Info: {info.postalCode} " +
+                Console.WriteLine($"Info: {info["post code"]} " +
                     $"{info.country} " +
-                    $"{info.countryAbbreviation} ");
+                    $"{info["country abbreviation"]} ");
                 foreach (var item in info.places)
                 {
                     Console.WriteLine($"Info lugar: {item}");

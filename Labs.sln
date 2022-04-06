@@ -13,7 +13,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sopra.Lab.App4.ConsoleApp4"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sopra.Labs.App5.ConsoleApp5", "Sopra.Labs.App5.ConsoleApp5\Sopra.Labs.App5.ConsoleApp5.csproj", "{614AF882-C3AE-4C56-A9D4-0E695EF280A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sopra.Labs.App6.ConsoleApp6", "Sopra.Labs.App6.ConsoleApp6\Sopra.Labs.App6.ConsoleApp6.csproj", "{68A0CBBC-5522-44A5-9826-14EC5353F367}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sopra.Labs.App6.ConsoleApp6", "Sopra.Labs.App6.ConsoleApp6\Sopra.Labs.App6.ConsoleApp6.csproj", "{68A0CBBC-5522-44A5-9826-14EC5353F367}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sopra.Labs.App1.WebApplication1", "Sopra.Labs.App1.WebApplication1\Sopra.Labs.App1.WebApplication1.csproj", "{20920AB7-F727-4A16-9748-9B8C0DDD52C2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{68A0CBBC-5522-44A5-9826-14EC5353F367}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{68A0CBBC-5522-44A5-9826-14EC5353F367}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{68A0CBBC-5522-44A5-9826-14EC5353F367}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20920AB7-F727-4A16-9748-9B8C0DDD52C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20920AB7-F727-4A16-9748-9B8C0DDD52C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20920AB7-F727-4A16-9748-9B8C0DDD52C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20920AB7-F727-4A16-9748-9B8C0DDD52C2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

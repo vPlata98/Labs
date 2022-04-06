@@ -5,4 +5,8 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Sopra.Lab.App4.ConsoleApp4\Sopra.Lab.App4.ConsoleApp4.csproj" />
+  </ItemGroup>
+
 </Project>

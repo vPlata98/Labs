@@ -2,68 +2,48 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <title>Javascript</title>
+    <link href="vendor/bootstrap-5.1.3-dist/css/bootstrap.css" rel="stylesheet" />
 </head>
 <body>
-    hola mundo
-    <img src="img/descarga.png" height="400" width="auto"/>
-    <p>
-        <b>Negrita</b><i>cursiva</i> <b><i>Ambas</i></b>
-        <sub>indice</sub>
-        <sup> super indice</sup>
-        <small> pequeño</small>
-        <mark>marcado</mark>
-        <del>tachado del</del>
-        <s>tachado s</s>
-        <ins>subrayado ins</ins>
-        <em>importante</em>
-        <pre>texto preformateado</pre>
-    </p>
-    <abbr>abreviatura</abbr>
-    <blockquote>
-        Demo
-    </blockquote>
-    <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        <br/>
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-        <br/>
-        It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, 
-        and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <p>
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-        Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
-        when an unknown printer took a galley of type and scrambled it to make a type specimen
-        book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
-    </p>
-    <h1>Encabezado 1</h1>
-    <h2>Encabezado 1</h2>
-    <h3>Encabezado 1</h3>
-    <h4>Encabezado 1</h4>
-    <h5>Encabezado 1</h5>
-    <h6>Encabezado 1</h6>
-
-    <ol>
-        <li>Brocoli</li>
-        <li>guisantes</li>
-        <li>Zanahoria</li>
-    </ol>
-
-    <ul>
-        <li>
-            manzana
-        </li>
-        <li>Pera</li>
-        <li>Mango</li>
-    </ul>
+    <br />
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1>Demo Javascript</h1>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <form>
+                    <div class="mb-3">
+                        <label for="nombre" class="form-label">Nombre</label>
+                        <input type="text" class="form-control" name="nombre" id="nombre" placeholder="escribe tu nombre" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido1" class="form-label">Apellido 1</label>
+                        <input type="text" class="form-control" name="apellido1" id="apellido1" placeholder="primer apellido" />
+                    </div>
+                    <div class="mb-3">
+                        <label for="apellido2" class="form-label">Apellido 2</label>
+                        <input type="text" class="form-control" name="apellido2" id="apellido2" />
+                    </div>
+                    <input type="button" class="btn btn-warning" value="Botón" />
+                    <input type="submit" class="btn btn-success" value="Submit" />
+                    <input type="reset" class="btn btn-primary" value="Reset" />
+                </form>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var global = "hola mundo";
+        function saludo(texto) {
+            var global = "adios";
+            document.write("<br/> <h1>" + global + "<h1/>");
+        }
+        saludo(global);
+        
+    </script>
 </body>
 </html>

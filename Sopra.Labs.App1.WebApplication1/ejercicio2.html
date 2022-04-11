@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <title></title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <h1>Visor de Imagenes</h1>
+                <span id="info-url"></span>
+                <hr />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div id="img-container" class="card-columns">
+                    <!--
+                        <div class="card">
+                            <img src="" class="img-fluid" />
+                        </div>
+                    -->
+                                    
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <form>
+                    <div class="mb-3">
+                        <label>URL de la Imagen</label>
+                        <input id="url" type="text" class="form-control" />
+                    </div>
+                    <button type="button" id="btn1" class="btn btn-success">Cargar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("btn1").onclick = function(e){
+            var src = document.getElementById("url").value;
+            if (src == null || src === "") {
+                return;
+            }
+            var div = document.createElement("div");
+            div.className = "card";
+            var img = document.createElement("img");
+            img.className = "img-fluid";
+            img.src = src;
+            img.onclick = function (e) {
+                document.getElementById("info-url").innerText = img.src;
+                //console.log(document.getElementById("info-url").value);
+            }
+            div.appendChild(img);
+            document.getElementById("img-container").appendChild(div);
+        }
+    </script>
+</body>
+</html>
